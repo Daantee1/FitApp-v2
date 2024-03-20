@@ -1,0 +1,33 @@
+<div class="w-full h-full flex justify-center  text-white">
+    <div class="w-96 h-fit flex-col justify-center   mt-20 border rounded-xl">
+        <h3 class="mt-5 font-semibold text-center text-xl">Logowanie</h3>
+        <form action="" (ngSubmit)="loginUser()">
+        <div class="mt-10 text-center ">
+            <div class="flex flex-col mb-8">
+                <label class="mb-2 text-lg" for="">Adres e-mail</label>
+                <input type="text" class="bg-transparent border-b text-center w-56 mr-auto ml-auto" name="email"
+                    [(ngModel)]="user.email"
+                    (input)="passwordOrEmailIncorrect = false">
+            </div>
+            
+            <div class="flex flex-col mb-12">
+                <label class="mb-2 text-lg" for="">Hasło</label>
+                <input type="password" class="bg-transparent border-b text-center  w-56 mr-auto ml-auto" name="password"
+                    [(ngModel)]="user.password"
+                    (input)="passwordOrEmailIncorrect = false">
+            </div>
+
+            @if(passwordOrEmailIncorrect){
+                <span class="flex w-full justify-center text-sm text-red-500 mb-5 ">Hasło lub adres e-mail są nie poprawne</span>
+            }
+            
+            <div class="w-full flex justify-center mb-5 items-center">
+              
+                <button type="submit"
+                    class="p-1 bg-white font-semibold text-black rounded-md hover:bg-gray-300">Zaloguj się</button>
+            </div>
+            <span class="text-sm mb-5 flex w-full justify-center">Nie masz konta? <a class="text-red-500 font-semibold ml-1" [routerLink]="'/register-page'">Kliknij tutaj!</a></span>
+        </div>
+        </form>
+    </div>
+</div>

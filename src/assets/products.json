@@ -1,0 +1,14 @@
+[
+    {"id": 1, "name": "Chleb (kromka chleba)", "kcal": 79.2, "fat": 0.96, "carbs": 14.9, "protein": 2.7, "quantity": 1},
+    {"id": 2 , "name": "Chleb (kromka z masłem)", "kcal": 131, "fat": 19.1, "carbs": 19.1, "protein": 3.1, "quantity": 1},
+    {"id": 3 , "name": "Plaster sera żółtego", "kcal": 75, "fat": 5.7, "carbs": 0, "protein": 6.8, "quantity": 1},
+    {"id": 4 , "name": "Plaster szynki wędzonej", "kcal": 51, "fat": 4.1, "carbs": 0.2, "protein": 3.4, "quantity": 1},
+    {"id": 5 , "name": "Plaster salami", "kcal": 39, "fat": 2.2, "carbs": 0.3, "protein": 1.9, "quantity": 1},
+    {"id": 6 , "name": "Ser biały chudy (100g)", "kcal": 113, "fat": 1, "carbs": 2, "protein": 25, "quantity": 1},
+    {"id": 7 , "name": "Ser biały półtłusty (100g)", "kcal": 132, "fat": 4.7, "carbs": 3.7, "protein": 18.3, "quantity": 1},
+    {"id": 8 , "name": "Ser biały tłusty (100g)", "kcal": 178, "fat": 10, "carbs": 4, "protein": 18, "quantity": 1},
+    {"id": 9 , "name": "Ryż biały (100g)", "kcal": 144, "fat": 0.2, "carbs": 32.2, "protein": 2.9, "quantity": 1},
+    {"id": 10 , "name": "Pierś z kurczaka (100g)", "kcal": 98, "fat": 1.3, "carbs": 0, "protein": 21.5, "quantity": 1},
+    {"id": 11 , "name": "Mięso mielone wołowe", "kcal": 254, "fat": 20, "carbs": 0, "protein": 17, "quantity": 1},
+    {"id": 12 , "name": "Serek wiejski (100g)", "kcal": 97, "fat": 5, "carbs": 2, "protein": 11, "quantity": 1}
+]

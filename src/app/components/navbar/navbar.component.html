@@ -1,0 +1,32 @@
+@if(!isLogged){
+    <div class="w-full text-white p-3 ">
+        <ul class="flex justify-between ml-5 mr-5 items-center cursor-pointer">
+            <li class="font-semibold xl:text-3xl mr-2  text-2xl" [routerLink]="'home'">
+                FitApp
+            </li>
+            <li class="ml-auto mr-5 hover:text-gray-300 xl:text-base text-sm " [routerLink]="'/home'">Strona główna</li>
+            
+            <li> <button class="hover:bg-gray-500 p-1 rounded-lg xl:text-base text-sm " [routerLink]="'/login-page'">Zaloguj się</button> </li>
+        </ul>
+    
+
+</div>
+}
+@if(isLogged){
+
+
+<div class="w-full text-white p-3 ">
+    <ul class="flex justify-between ml-5 mr-5 items-center cursor-pointer">
+        <li class="font-semibold xl:text-3xl mr-5  text-2xl" [routerLink]="'home'">
+            FitApp
+        </li>
+        <li class="ml-auto mr-3 hover:text-gray-300 xl:text-base text-sm " [routerLink]="'/home'">Strona główna</li>
+        <li class="mr-3 hover:text-gray-300 xl:text-base text-sm " [routerLink]="'/menu-page'">Stwórz jadłospis</li>
+        <li class="mr-3 hover:text-gray-300 xl:text-base text-sm " [routerLink]="'/my-data-page'">Moje dane</li>
+        
+        <li> <button class="hover:bg-gray-500 p-1 rounded-lg xl:text-base text-sm " [routerLink]="'/login-page'" (click)="logOut()">Wyloguj się</button> </li>
+    </ul>
+
+
+</div>
+}

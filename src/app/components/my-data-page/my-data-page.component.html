@@ -1,0 +1,360 @@
+@if(logIn){ @if(showMyData){
+<div class="w-full h-full flex justify-center text-white overflow-x-hidden">
+  <div class="w-96 h-fit flex-col justify-center mt-20 border rounded-xl">
+    <h3 class="mt-5 font-semibold text-center text-xl">Moje dane</h3>
+    <div class="mt-10 text-center ">
+      @for(data of profileData; track data.id){
+
+      <p class="mb-2"><a class="font-semibold">Płeć: </a> {{ data.gender }}</p>
+      <p class="mb-2"><a class="font-semibold">Wiek: </a> {{ data.age }} lat</p>
+      <p class="mb-2">
+        <a class="font-semibold">Waga: </a> {{ data.weight }} kg
+      </p>
+      <p class="mb-2">
+        <a class="font-semibold">Wzrost: </a>{{ data.height }} cm
+      </p>
+      <p class="mb-2">
+        <a class="font-semibold">Moja aktywność: </a>{{ data.activity }}
+      </p>
+      <p class="mb-8"><a class="font-semibold">Mój cel: </a> {{ data.goal }}</p>
+      } @if(!hideButtonChangeData){
+      <div class="w-full flex justify-center ml-28 mb-5">
+        <button
+          type="buttom"
+          class="p-1 bg-white font-semibold text-black rounded-md hover:bg-gray-300"
+          (click)="changeDataButton()"
+        >
+          Zmień dane
+        </button>
+      </div>
+
+      } @if(!hideButtonAddData){
+      <div class="w-full flex justify-center ml-28 mt-5 mb-2">
+        <button
+          type="buttom"
+          class="p-1 bg-white font-semibold text-black rounded-md hover:bg-gray-300"
+          (click)="addDataButton()"
+        >
+          Dodaj dane
+        </button>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+
+} @if(addData){
+<div class="w-full h-full flex justify-center text-white">
+  <div class="w-96 h-fit flex-col justify-center mt-20 border rounded-xl mb-10">
+    <h3 class="mt-5 font-semibold text-center text-xl">Zmiana danych</h3>
+    <div class="mt-10 flex justify-center">
+      <form action="" (ngSubmit)="setDataProfile()">
+        <div class="flex flex-col text-center mb-8">
+          <label class="mb-2 text-lg" for="">Płeć</label>
+          <div class="flex justify-around">
+            <input
+              type="radio"
+              name="gender"
+              value="kobieta"
+              [(ngModel)]="profile.gender"
+            />Kobieta
+            <input
+              type="radio"
+              class="ml-2"
+              name="gender"
+              value="mężczyzna"
+              [(ngModel)]="profile.gender"
+            />Mężczyzna
+          </div>
+        </div>
+        <div class="flex flex-col text-center mb-8">
+          <label class="mb-2 text-lg" for="">Wiek</label>
+          <input
+            type="text"
+            class="bg-transparent border-b text-center"
+            name="weight"
+            [(ngModel)]="profile.age"
+          />
+        </div>
+
+        <div class="flex flex-col text-center mb-8">
+          <label class="mb-2 text-lg" for="">Waga</label>
+          <input
+            type="text"
+            class="bg-transparent border-b text-center"
+            name="weight"
+            [(ngModel)]="profile.weight"
+            placeholder="wartość w kg."
+          />
+        </div>
+        <div class="flex flex-col text-center mb-8">
+          <label class="mb-2 text-lg" for="">Wzrost</label>
+          <input
+            type="text"
+            class="bg-transparent border-b text-center"
+            name="height"
+            [(ngModel)]="profile.height"
+            placeholder="wartość w cm."
+          />
+        </div>
+
+        <div class="flex flex-col text-center mb-10">
+          <label class="mb-2 text-lg w-full" for="">Moja aktywność</label>
+
+          <select
+            name="activity"
+            id=""
+            class="text-black rounded-md w-56 text-sm"
+            [(ngModel)]="profile.activity"
+          >
+            <option value="Znikoma">
+              Znikoma(brak ćwiczeń praca siedząca, szkoła)
+            </option>
+            <option value="Bardzo mała" maintain>
+              Bardzo mała(ćwiczenia raz na tydzień,praca lekka)
+            </option>
+            <option value="Umiarkowana">
+              Umiarkowana(ćwiczenia dwa razy w tygodniu - średniej
+              intensywności)
+            </option>
+            <option value="Duża">
+              Duża(dość ciężki trening kilka razy w tygodniu)
+            </option>
+            <option value="Bardzo duża">
+              Bardzo duża(przynajmniej 4 ciężkie treningi w tygodniu, praca
+              fizyczna)
+            </option>
+          </select>
+        </div>
+
+        <div class="flex flex-col text-center mb-10">
+          <label class="mb-2 text-lg w-full" for="">Mój cel</label>
+
+          <select
+            name="goal"
+            id=""
+            class="text-black rounded-md"
+            [(ngModel)]="profile.goal"
+          >
+            <option value="Schudnąć">Schudnąć</option>
+            <option value="Utrzymać wagę" maintain>Utrzymać wagę</option>
+            <option value="Przytyć">Przytyć</option>
+          </select>
+        </div>
+
+        <div class="w-full flex justify-end mb-5">
+          <button
+            type="submit"
+            class="p-1 bg-white font-semibold text-black rounded-md hover:bg-gray-300"
+          >
+            Dodaj
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+} @if(changeData){
+
+<div class="w-full h-full flex justify-center text-white">
+  <div class="w-96 h-fit flex-col justify-center mt-20 border rounded-xl mb-10">
+    <h3 class="mt-5 font-semibold text-center text-xl">Zmiana danych</h3>
+    <div class="mt-10 flex justify-center">
+      <form action="" (ngSubmit)="updateDataProfile()">
+        <div class="flex flex-col text-center mb-8">
+          <label class="mb-2 text-lg" for="">Płeć</label>
+          <div class="flex justify-around">
+            <input
+              type="radio"
+              name="gender"
+              value="kobieta"
+              [(ngModel)]="profile.gender"
+            />Kobieta
+            <input
+              type="radio"
+              class="ml-2"
+              name="gender"
+              value="mężczyzna"
+              [(ngModel)]="profile.gender"
+            />Mężczyzna
+          </div>
+        </div>
+
+        <div class="flex flex-col text-center mb-8">
+          <label class="mb-2 text-lg" for="">Wiek</label>
+          <input
+            type="text"
+            class="bg-transparent border-b text-center"
+            name="weight"
+            [(ngModel)]="profile.age"
+          />
+        </div>
+
+        <div class="flex flex-col text-center mb-8">
+          <label class="mb-2 text-lg" for="">Waga</label>
+          <input
+            type="text"
+            class="bg-transparent border-b text-center"
+            name="weight"
+            placeholder="wartość w kg"
+            [(ngModel)]="profile.weight"
+          />
+        </div>
+        <div class="flex flex-col text-center mb-8">
+          <label class="mb-2 text-lg" for="">Wzrost</label>
+          <input
+            type="text"
+            class="bg-transparent border-b text-center"
+            name="height"
+            placeholder="wartość w cm."
+            [(ngModel)]="profile.height"
+          />
+        </div>
+
+        <div class="flex flex-col text-center mb-10">
+          <label class="mb-2 text-lg w-full" for="">Mój cel</label>
+
+          <select
+            name="goal"
+            id=""
+            class="text-black rounded-md"
+            [(ngModel)]="profile.goal"
+          >
+            <option value="Schudnąć">Schudnąć</option>
+            <option value="Utrzymać wagę" maintain>Utrzymać wagę</option>
+            <option value="Przytyć">Przytyć</option>
+          </select>
+        </div>
+        <div class="flex flex-col text-center mb-10 mt-10">
+          <label class="mb-2 text-lg" for="">Moja aktywność</label>
+
+          <select
+            name="activity"
+            id=""
+            class="text-black rounded-md text-sm w-56"
+            [(ngModel)]="profile.activity"
+          >
+            <option value="Znikoma">
+              Znikoma(brak ćwiczeń praca siedząca, szkoła)
+            </option>
+            <option value="Bardzo mała" maintain>
+              Bardzo mała(ćwiczenia raz na tydzień,praca lekka)
+            </option>
+            <option value="Umiarkowana">
+              Umiarkowana(ćwiczenia dwa razy w tygodniu - średniej
+              intensywności)
+            </option>
+            <option value="Duża">
+              Duża(dość ciężki trening kilka razy w tygodniu)
+            </option>
+            <option value="Bardzo duża">
+              Bardzo duża(przynajmniej 4 ciężkie treningi w tygodniu, praca
+              fizyczna)
+            </option>
+          </select>
+        </div>
+        <div class="w-full flex justify-end mb-5">
+          <button
+            type="submit"
+            class="p-1 bg-white font-semibold text-black rounded-md hover:bg-gray-300"
+          >
+            Zapisz
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+} @if(showMyData){
+
+<div class="w-full justify-center flex">
+  <div class="mr-16 mt-10">
+    <button
+      type="submit"
+      class="p-3 bg-white font-semibold text-black rounded-md hover:bg-gray-300"
+      (click)="calculateBMI()"
+    >
+      Oblicz swoje BMI
+    </button>
+  </div>
+  <div class="mt-10">
+    <button
+      type="submit"
+      class="p-3 bg-white font-semibold text-black rounded-md hover:bg-gray-300"
+      (click)="calculateBMR()"
+    >
+      Oblicz swoje BMR
+    </button>
+  </div>
+</div>
+} @if(showLoader){
+<div class="flex justify-center">
+  <img
+    src="/assets/loading.gif"
+    width="100"
+    height="100"
+    class="mt-10 f"
+    alt=""
+  />
+</div>
+} @if(showResultBMI){
+
+<div>
+  <div class="flex w-full justify-center mt-5 text-white">
+    <div class="">
+      <h3 class="text-center mt-3 text-xl text font-semibold mb-3">
+        Twój wynik
+      </h3>
+      <div class="text-center">
+        <h3>
+          <a class="text-gray-300">Twój wskaźnik ciała (BMI) wynosi:</a>
+          <a class="font-semibold"> {{ resultNumberBMI }}</a>
+        </h3>
+        <h3>
+          <a class="text-gray-300">Oznacza to</a>
+          <a class="font-semibold"> {{ resultBMI }}</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+} @if(showResultBMR){
+
+<div>
+  <div class="flex w-full justify-center mt-5 text-white">
+    <div class="">
+      <h3 class="text-center mt-3 text-xl text font-semibold mb-3">
+        Twój wynik
+      </h3>
+      <div class="text-center">
+        <h3>
+          <a class="text-gray-300"
+            >Jeśli chcesz
+            <a class="font-semibold text-gray-20">{{ profileData[0].goal }}</a>
+            musisz spożywać około</a
+          >
+          <a class="font-semibold text-gray-200"> {{ resultBMR }} kcal</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+} } @else {
+<div class="flex justify-center">
+  <img
+    src="/assets/loading.gif"
+    width="100"
+    height="100"
+    class="mt-10 f"
+    alt=""
+  />
+</div>
+
+}
+<div
+  class="w-full justify-center inline-flex mt-5 p-2"
+  [style.display]="showChart ? 'flex' : 'none'"
+>
+  <canvas #myChart style="width: 350px; height: 350px"></canvas>
+</div>

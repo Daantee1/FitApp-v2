@@ -1,0 +1,89 @@
+@if(myListOfProducts.length > 0){
+
+<div class="flex flex-col w-full justify-center mt-40">
+  <h3 class="mt-3 mb-5 text-3xl text text-center font-semibold text-white">
+    Moja lista
+  </h3>
+  <div class="w-full justify-center flex">
+    <div class="p-5 border-2 rounded mt-2 bg-blue-5 ">
+      <h3 class="font-semibold mb-2">Łączna ilość wartości odżywczych:</h3>
+      @if(!BMRShow){
+      <p><a class="font-semibold">Kcal: </a>{{ sumOfKcal }} g</p>
+      <p><a class="font-semibold">Tłuszcze:</a> {{ sumOfFat }} g</p>
+      <p><a class="font-semibold">Węglowodany:</a> {{ sumOfCarbs }} g</p>
+      <p><a class="font-semibold">Białko:</a> {{ sumOfProtein }} g</p>
+      } @if(BMRShow){
+      <p>
+        <a class="font-semibold">Kcal: </a>
+        <a [ngClass]="{ 'text-red-700': sumOfKcal > BMR[0].kcal }"
+          >{{ sumOfKcal }} g</a
+        >
+        / <a class="text-blue-600">{{ BMR[0].kcal }} g</a>
+      </p>
+      <p>
+        <a class="font-semibold">Tłuszcze: </a>
+        <a [ngClass]="{ 'text-red-700': sumOfFat > BMR[0].fat }"
+          >{{ sumOfFat }} g</a
+        >
+        / <a class="text-blue-600">{{ BMR[0].fat }} g</a>
+      </p>
+      <p>
+        <a class="font-semibold">Węglowodany: </a>
+        <a [ngClass]="{ 'text-red-700': sumOfCarbs > BMR[0].carbs }"
+          >{{ sumOfCarbs }} g</a
+        >
+        / <a class="text-blue-600">{{ BMR[0].carbs }} g</a>
+      </p>
+      <p>
+        <a class="font-semibold">Białko: </a>
+        <a [ngClass]="{ 'text-red-700': sumOfProtein > BMR[0].protein }"
+          >{{ sumOfProtein }} g </a
+        >/ <a class="text-blue-600">{{ BMR[0].protein }} g</a>
+      </p>
+      }
+    </div>
+  </div>
+
+  <div
+    class="flex flex-col md:flex-row w-full md:items-start items-center justify-center mt-2 p-2 flex-wrap"
+  >
+    @for(product of myListOfProducts; track product.id){
+
+    <li class="list-none mt-2 mb-2 p-5 w-96 mr-2 border-2 rounded bg-blue-5">
+      <a class="text-lg">{{ product.name }}</a>
+      <div class="flex w-full justify-between">
+        <p class="mt-1 text-lg">Ilość: {{ product.quantity }}</p>
+        <div>
+          <button (click)="addItem(product)">
+            <img src="./assets/plus.png" class="w-10 h-10" alt="" />
+          </button>
+          <button class="ml-2" (click)="deleteItem(product)">
+            <img src="./assets/waste-bin.png" class="w-10 h-10" alt="" />
+          </button>
+        </div>
+      </div>
+      <p class="mt-1">Wartość odżywcza:</p>
+      <div class="flex w-full justify-between">
+        <p><a class="font-semibold">Kcal</a></p>
+        <p>{{ product.kcal }} g</p>
+      </div>
+      <div class="flex w-full justify-between">
+        <p><a class="font-semibold">Tłuszcze</a></p>
+        <p>{{ product.fat }} g</p>
+      </div>
+      <div class="flex w-full justify-between">
+        <p><a class="font-semibold">Węglowodany</a></p>
+        <p>{{ product.carbs }} g</p>
+      </div>
+      <div class="flex w-full justify-between">
+        <p><a class="font-semibold">Białko</a></p>
+        <p>{{ product.protein }} g</p>
+      </div>
+    </li>
+    }
+  </div>
+</div>
+
+} @else {
+<h3 class="text-center text-white mt-40 text-2xl">Brak produktów w liście</h3>
+}
